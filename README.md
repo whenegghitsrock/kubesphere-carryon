@@ -1,3 +1,7 @@
+Thank you very much for the KubeSphere team's contributions. It was an excellent project that helped many users. After KubeSphere decided to close its source, I chose to continue maintaining the project based on its last open-source code. I hope that through the power of the community, this project can be continued, and I welcome all interested developers to join.
+
+----
+
 <p align="center">
 <a href="https://kubesphere.io/"><img src="docs/images/kubesphere-icon.gif" alt="banner" width="200px"></a>
 </p>
