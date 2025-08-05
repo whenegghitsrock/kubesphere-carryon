@@ -1,3 +1,7 @@
+非常感谢 KubeSphere 团队的贡献，它曾是一个优秀且帮助了许多用户的项目。在 KubeSphere 闭源之后，我决定基于其最后发布的开源代码继续维护此项目。希望通过社区的力量，让这个项目得以延续，并在此欢迎所有感兴趣的开发者加入。
+
+----
+
 <p align="center">
 <a href="https://kubesphere.com.cn/"><img src="docs/images/kubesphere-icon.gif" alt="banner" width="200px"></a>
 </p>
