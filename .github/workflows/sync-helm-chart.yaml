@@ -53,7 +53,7 @@ jobs:
           fi
           git add .
           git commit -m "update ks-core helm chart"
-          git push origin sync/ks-core/${GITHUB_REF#refs/*/} --force
+          git push ks sync/ks-core/${GITHUB_REF#refs/*/} --force
 
       - name: Create Pull Request
         env:
