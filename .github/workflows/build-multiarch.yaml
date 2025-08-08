@@ -21,13 +21,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Login to HUAWEICLOUD
-        uses: docker/login-action@v3
-        with:
-          registry: swr.cn-southwest-2.myhuaweicloud.com
-          username: ${{ secrets.HUAWEICLOUD_USERNAME }}
-          password: ${{ secrets.HUAWEICLOUD_PASSWORD }}
-
       - name: Login to DOCKER
         uses: docker/login-action@v3
         with:
@@ -61,7 +54,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            docker.io/kubesphere/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
+            docker.io/whenegghitsrock/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
 
       - name: Build and push ks-apiserver dev images
         uses: docker/build-push-action@v6
@@ -72,7 +65,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            docker.io/kubespheredev/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
+            docker.io/whenegghitsrockdev/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
 
       - name: Build and push ks-controller-manager images
         uses: docker/build-push-action@v6
@@ -83,8 +76,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            docker.io/kubesphere/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
-
+            docker.io/whenegghitsrock/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
 
       - name: Build and push ks-controller-manager dev images
         uses: docker/build-push-action@v6
@@ -95,17 +87,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            docker.io/kubespheredev/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
-
-      - name: Sync ks images to HUAWEICLOUD
-        if: steps.chose_registry.outputs.env == 'prod'
-        run: |
-          # apiserver
-          docker pull docker.io/kubesphere/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
-          docker tag docker.io/kubesphere/ks-apiserver:${{ steps.chose_registry.outputs.tag }} swr.cn-southwest-2.myhuaweicloud.com/ks/kubesphere/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
-          docker push swr.cn-southwest-2.myhuaweicloud.com/ks/kubesphere/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
-          # controller-manager
-          docker pull docker.io/kubesphere/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
-          docker tag docker.io/kubesphere/ks-controller-manager:${{ steps.chose_registry.outputs.tag }} swr.cn-southwest-2.myhuaweicloud.com/ks/kubesphere/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
-          docker push swr.cn-southwest-2.myhuaweicloud.com/ks/kubesphere/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
-          
+            docker.io/whenegghitsrockdev/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
