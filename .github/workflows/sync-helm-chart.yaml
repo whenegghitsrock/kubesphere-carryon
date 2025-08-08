@@ -25,9 +25,9 @@ jobs:
       - name: Check out whenegghitsrock/helm-charts-carryon
         uses: actions/checkout@v4
         with:
-          repository: ks-ci-bot/helm-charts-carryon
+          repository: whenegghitsrock/helm-charts-carryon
           token: ${{ secrets.CIBOT_ACCESS_TOKEN }}
-          path: helm-charts
+          path: helm-charts-carryon
           fetch-depth: 0
 
       - name: Setup SSH
