@@ -16,16 +16,16 @@ jobs:
   sync-chart:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out kubesphere/kubesphere
+      - name: Check out whenegghitsrock/kubesphere-carryon
         uses: actions/checkout@v4
         with:
-          path: kubesphere
+          path: kubesphere-carryon
           fetch-depth: 0
 
-      - name: Check out kubesphere/helm-charts
+      - name: Check out whenegghitsrock/helm-charts-carryon
         uses: actions/checkout@v4
         with:
-          repository: ks-ci-bot/helm-charts
+          repository: ks-ci-bot/helm-charts-carryon
           token: ${{ secrets.CIBOT_ACCESS_TOKEN }}
           path: helm-charts
           fetch-depth: 0
@@ -33,16 +33,16 @@ jobs:
       - name: Setup SSH
         uses: MrSquaare/ssh-setup-action@v3
         with:
-          working-directory: helm-charts
+          working-directory: helm-charts-carryon
           host: github.com
           private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Sync charts
         run: |
-          cd helm-charts
-          git config --global user.email "ci-bot@kubesphere.io"
+          cd helm-charts-carryon
+          git config --global user.email "ci-bot@kubesphere-carryon.io"
           git config --global user.name "ks-ci-bot"
-          git remote add ks git@github.com:kubesphere/helm-charts.git
+          git remote add ks git@github.com:whenegghitsrock/helm-charts-carryon.git
           git fetch ks master
           git checkout -b sync/ks-core/${GITHUB_REF#refs/*/} ks/master
           rm -rf src/test/ks-core
@@ -59,10 +59,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.CIBOT_ACCESS_TOKEN }}
         run: |
-          cd helm-charts
-          if [[ $(gh pr ls -R kubesphere/helm-charts -A ks-ci-bot -H sync/ks-core/${GITHUB_REF#refs/*/} -B master) == "" ]]; then
+          cd helm-charts-carryon
+          if [[ $(gh pr ls -R whenegghitsrock/helm-charts-carryon -A ks-ci-bot -H sync/ks-core/${GITHUB_REF#refs/*/} -B master) == "" ]]; then
             # Create a PR in the kubesphere/helm-charts repository
-            gh pr create -R kubesphere/helm-charts \
+            gh pr create -R whenegghitsrock/helm-charts-carryon \
               -B master \
               -H ks-ci-bot:sync/ks-core/${GITHUB_REF#refs/*/} \
               -t "Update ks-core helm chart from ${GITHUB_REF#refs/*/}" \
