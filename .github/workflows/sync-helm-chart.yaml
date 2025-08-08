@@ -46,10 +46,10 @@ jobs:
           git fetch ks master
           git checkout -b sync/ks-core/${GITHUB_REF#refs/*/} ks/master
           rm -rf src/test/ks-core
-          cp -r ../kubesphere/config/ks-core src/test/
+          cp -r ../kubesphere-carryon/config/ks-core src/test/
           if [[ ${GITHUB_REF#refs/*/} =~ ^helm-chart-[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             rm -rf src/main/ks-core
-            cp -r ../kubesphere/config/ks-core src/main/
+            cp -r ../kubesphere-carryon/config/ks-core src/main/
           fi
           git add .
           git commit -m "update ks-core helm chart"
@@ -61,7 +61,7 @@ jobs:
         run: |
           cd helm-charts-carryon
           if [[ $(gh pr ls -R whenegghitsrock/helm-charts-carryon -A ks-ci-bot -H sync/ks-core/${GITHUB_REF#refs/*/} -B master) == "" ]]; then
-            # Create a PR in the kubesphere/helm-charts repository
+            # Create a PR in the kubesphere-carryon/helm-charts repository
             gh pr create -R whenegghitsrock/helm-charts-carryon \
               -B master \
               -H ks-ci-bot:sync/ks-core/${GITHUB_REF#refs/*/} \
