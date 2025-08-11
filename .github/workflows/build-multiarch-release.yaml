@@ -3,7 +3,9 @@ name: BuildContainerImage
 on:
   push:
     branches:
-      - 'master'
+      - 'release-*'
+    tags:
+      - 'v*'
   workflow_dispatch: # Manual trigger
 
 jobs:
@@ -21,8 +23,8 @@ jobs:
       - name: Login to DOCKER
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME_DEV }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD_DEV }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -42,24 +44,24 @@ jobs:
           fi
           echo "tag=${GITHUB_REF#refs/*/}" >> "$GITHUB_OUTPUT"          
 
-      - name: Build and push ks-apiserver dev images
+      - name: Build and push ks-apiserver images
         uses: docker/build-push-action@v6
-        if: steps.chose_registry.outputs.env == 'dev'
+        if: steps.chose_registry.outputs.env == 'prod'
         with:
           context: ${{ github.workspace }}
           file: build/ks-apiserver/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            docker.io/whenegghitsrockdev/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
+            docker.io/whenegghitsrock/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
 
-      - name: Build and push ks-controller-manager dev images
+      - name: Build and push ks-controller-manager images
         uses: docker/build-push-action@v6
-        if: steps.chose_registry.outputs.env == 'dev'
+        if: steps.chose_registry.outputs.env == 'prod'
         with:
           context: ${{ github.workspace }}
           file: build/ks-controller-manager/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            docker.io/whenegghitsrockdev/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
+            docker.io/whenegghitsrock/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
