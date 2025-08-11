@@ -1,0 +1,65 @@
+name: BuildContainerImage
+
+on:
+  push:
+    branches:
+      - 'master'
+  workflow_dispatch: # Manual trigger
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      GO111MODULE: on
+    steps:
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Login to DOCKER
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME_DEV }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD_DEV }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: all
+
+      - name: Set up Docker buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Chose Registry by tag
+        id: chose_registry
+        run: |
+          if [[ ${GITHUB_REF#refs/*/} =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              echo "env=prod" >> "$GITHUB_OUTPUT"
+          else
+              echo "env=dev" >> "$GITHUB_OUTPUT"
+          fi
+          echo "tag=${GITHUB_REF#refs/*/}" >> "$GITHUB_OUTPUT"          
+
+      - name: Build and push ks-apiserver dev images
+        uses: docker/build-push-action@v6
+        if: steps.chose_registry.outputs.env == 'dev'
+        with:
+          context: ${{ github.workspace }}
+          file: build/ks-apiserver/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            docker.io/whenegghitsrockdev/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
+
+      - name: Build and push ks-controller-manager dev images
+        uses: docker/build-push-action@v6
+        if: steps.chose_registry.outputs.env == 'dev'
+        with:
+          context: ${{ github.workspace }}
+          file: build/ks-controller-manager/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            docker.io/whenegghitsrockdev/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
