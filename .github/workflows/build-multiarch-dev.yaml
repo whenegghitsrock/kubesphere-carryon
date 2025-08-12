@@ -51,7 +51,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            docker.io/whenegghitsrockdev/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
+            docker.io/kubesphereondev/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
 
       - name: Build and push ks-controller-manager dev images
         uses: docker/build-push-action@v6
@@ -62,4 +62,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            docker.io/whenegghitsrockdev/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
+            docker.io/kubesphereondev/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
