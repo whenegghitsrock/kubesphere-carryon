@@ -111,7 +111,7 @@ internalTLS: false
 apiserver:
   image:
     registry: ""
-    repository: kubesphere/ks-apiserver
+    repository: kubesphereon/ks-apiserver
     tag: ""
     digest: ""
     pullPolicy: IfNotPresent
@@ -156,7 +156,7 @@ apiserver:
 console:
   image:
     registry: ""
-    repository: kubesphere/ks-console
+    repository: kubesphereon/ks-console
     tag: ""
     digest: ""
     pullPolicy: IfNotPresent
@@ -196,7 +196,7 @@ console:
 controller:
   image:
     registry: ""
-    repository: kubesphere/ks-controller-manager
+    repository: kubesphereon/ks-controller-manager
     tag: ""
     digest: ""
     pullPolicy: IfNotPresent
@@ -247,7 +247,7 @@ helmExecutor:
   jobTTLAfterFinished: 0s
   image:
     registry: ""
-    repository: kubesphere/kubectl
+    repository: kubesphereon/kubectl
     tag: "v1.27.16"
     pullPolicy: IfNotPresent
   resources:
@@ -276,7 +276,7 @@ composedApp:
 kubectl:
   image:
     registry: ""
-    repository: kubesphere/kubectl
+    repository: kubesphereon/kubectl
     tag: "v1.27.16"
     pullPolicy: IfNotPresent
 
@@ -306,7 +306,7 @@ certmanager:
 nodeShell:
   image:
     registry: ""
-    repository: kubesphere/kubectl
+    repository: kubesphereon/kubectl
     tag: "v1.27.16"
     pullPolicy: IfNotPresent
 
@@ -331,7 +331,7 @@ upgrade:
   enabled: false
   image:
     registry: ""
-    repository: kubesphere/ks-upgrade
+    repository: kubesphereon/ks-upgrade
     tag: ""
     pullPolicy: IfNotPresent
   persistenceVolume:
@@ -370,7 +370,7 @@ redis:
   port: 6379
   image:
     registry: ""
-    repository: kubesphere/redis
+    repository: kubesphereon/redis
     digest: ""
     tag: 7.2.4-alpine
     pullPolicy: IfNotPresent
@@ -384,7 +384,7 @@ redisHA:
     port: 6379
   image:
     registry: ""
-    repository: kubesphere/redis
+    repository: kubesphereon/redis
     tag: 7.2.4-alpine
     digest: ""
     pullPolicy: IfNotPresent
@@ -414,7 +414,7 @@ redisHA:
     containerPort: 6379
     image:
       registry: ""
-      repository: kubesphere/haproxy
+      repository: kubesphereon/haproxy
       tag: 2.9.6-alpine
       digest: ""
       pullPolicy: IfNotPresent
@@ -434,7 +434,7 @@ ksCRDs:
   kubectl:
     image:
       registry: ""
-      repository: kubesphere/kubectl
+      repository: kubesphereon/kubectl
       tag: "v1.27.16"
       pullPolicy: IfNotPresent
 
@@ -443,6 +443,6 @@ ksExtensionRepository:
   enabled: true
   image:
     registry: ""
-    repository: kubesphere/ks-extensions-museum
+    repository: kubesphereon/ks-extensions-museum
     tag: "latest"
     pullPolicy: IfNotPresent

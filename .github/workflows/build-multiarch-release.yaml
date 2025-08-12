@@ -60,7 +60,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            docker.io/whenegghitsrock/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
+            docker.io/kubesphereon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
 
       - name: Build and push ks-controller-manager images
         uses: docker/build-push-action@v6
@@ -71,31 +71,31 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            docker.io/whenegghitsrock/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
+            docker.io/kubesphereon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
       
       - name: Sync ks images to ALIYUN
         if: steps.chose_registry.outputs.env == 'prod'
         run: |
           # apiserver
-          docker pull --platform linux/amd64 docker.io/whenegghitsrock/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
-          docker tag docker.io/whenegghitsrock/ks-apiserver:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}-amd64
-          docker push registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}-amd64
-          docker pull --platform linux/arm64 docker.io/whenegghitsrock/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
-          docker tag docker.io/whenegghitsrock/ks-apiserver:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}-arm64
-          docker push registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}-arm64
-          docker manifest create registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-apiserver:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}-arm64 registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}-amd64
-          docker manifest annotate registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-apiserver:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}-arm64 --os linux --arch arm64
-          docker manifest annotate registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-apiserver:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}-amd64 --os linux --arch amd64
-          docker manifest push registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
+          docker pull --platform linux/amd64 docker.io/kubesphereon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
+          docker tag docker.io/kubesphereon/ks-apiserver:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphereon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}-amd64
+          docker push registry.cn-beijing.aliyuncs.com/kubesphereon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}-amd64
+          docker pull --platform linux/arm64 docker.io/kubesphereon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
+          docker tag docker.io/kubesphereon/ks-apiserver:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphereon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}-arm64
+          docker push registry.cn-beijing.aliyuncs.com/kubesphereon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}-arm64
+          docker manifest create registry.cn-beijing.aliyuncs.com/kubesphereon/ks-apiserver:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphereon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}-arm64 registry.cn-beijing.aliyuncs.com/kubesphereon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}-amd64
+          docker manifest annotate registry.cn-beijing.aliyuncs.com/kubesphereon/ks-apiserver:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphereon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}-arm64 --os linux --arch arm64
+          docker manifest annotate registry.cn-beijing.aliyuncs.com/kubesphereon/ks-apiserver:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphereon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}-amd64 --os linux --arch amd64
+          docker manifest push registry.cn-beijing.aliyuncs.com/kubesphereon/ks-apiserver:${{ steps.chose_registry.outputs.tag }}
           # controller-manager
-          docker pull --platform linux/amd64 docker.io/whenegghitsrock/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
-          docker tag docker.io/whenegghitsrock/ks-controller-manager:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}-amd64
-          docker push registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}-amd64
-          docker pull --platform linux/arm64 docker.io/whenegghitsrock/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
-          docker tag docker.io/whenegghitsrock/ks-controller-manager:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}-arm64
-          docker push registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}-arm64
-          docker manifest create registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}-arm64 registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}-amd64
-          docker manifest annotate registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}-arm64 --os linux --arch arm64
-          docker manifest annotate registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}-amd64 --os linux --arch amd64
-          docker manifest push registry.cn-beijing.aliyuncs.com/kubesphere-carryon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
+          docker pull --platform linux/amd64 docker.io/kubesphereon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
+          docker tag docker.io/kubesphereon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphereon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}-amd64
+          docker push registry.cn-beijing.aliyuncs.com/kubesphereon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}-amd64
+          docker pull --platform linux/arm64 docker.io/kubesphereon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
+          docker tag docker.io/kubesphereon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphereon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}-arm64
+          docker push registry.cn-beijing.aliyuncs.com/kubesphereon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}-arm64
+          docker manifest create registry.cn-beijing.aliyuncs.com/kubesphereon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphereon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}-arm64 registry.cn-beijing.aliyuncs.com/kubesphereon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}-amd64
+          docker manifest annotate registry.cn-beijing.aliyuncs.com/kubesphereon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphereon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}-arm64 --os linux --arch arm64
+          docker manifest annotate registry.cn-beijing.aliyuncs.com/kubesphereon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }} registry.cn-beijing.aliyuncs.com/kubesphereon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}-amd64 --os linux --arch amd64
+          docker manifest push registry.cn-beijing.aliyuncs.com/kubesphereon/ks-controller-manager:${{ steps.chose_registry.outputs.tag }}
           

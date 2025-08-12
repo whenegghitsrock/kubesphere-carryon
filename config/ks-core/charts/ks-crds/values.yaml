@@ -6,7 +6,7 @@ global:
 kubectl:
   image:
     registry: ""
-    repository: kubesphere/kubectl
+    repository: kubesphereon/kubectl
     tag: "v1.27.16"
     pullPolicy: IfNotPresent
   resources:
