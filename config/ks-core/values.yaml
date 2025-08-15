@@ -6,7 +6,6 @@ global:
   imagePullSecrets: []
   # - name: "image-pull-secret"
 
-
 ## @param nameOverride String to partially override common.names.fullname
 ##
 nameOverride: ""
@@ -75,7 +74,6 @@ auditing:
     maxBackups: 10
     maxSize: 100
 
-
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -112,7 +110,7 @@ apiserver:
   image:
     registry: ""
     repository: kubesphereon/ks-apiserver
-    tag: ""
+    tag: "v4.1.3"
     digest: ""
     pullPolicy: IfNotPresent
   ## @param containerPorts [array] List of container ports to enable in the ks-apiserver container
@@ -157,7 +155,7 @@ console:
   image:
     registry: ""
     repository: kubesphereon/ks-console
-    tag: ""
+    tag: "v4.1.3"
     digest: ""
     pullPolicy: IfNotPresent
   config:
@@ -220,7 +218,7 @@ controller:
   ## @param command Override default container command (useful when using custom images)
   ##
   command:
-    - ks-controller-manager
+    - controller-manager
     - --logtostderr=true
     - --leader-elect=true
     - --controllers=*
