@@ -201,13 +201,18 @@ The security process for reporting vulnerabilities is described in [SECURITY.md]
 The [user case studies](https://kubesphere.io/case/) page includes the user list of the project. You
 can [leave a comment](https://github.com/kubesphere/kubesphere/issues/4123) to let us know your use case.
 
----
+## 💖 Support this Project  
 
-<p align="center">
-<br/><br/>
-<img src="https://raw.githubusercontent.com/cncf/artwork/refs/heads/main/other/cncf-landscape/horizontal/color/cncf-landscape-horizontal-color.svg" width="150"/>&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/cncf/artwork/refs/heads/main/other/cncf/horizontal/color/cncf-color.svg" width="200"/>&nbsp;&nbsp;
-<br/><br/>
-KubeSphere is a member of CNCF and a <a href="https://www.cncf.io/certification/software-conformance/#logos">Kubernetes Conformance Certified platform
-</a>, which enriches the <a href="https://landscape.cncf.io/?landscape=observability-and-analysis&group=certified-partners-and-providers&item=platform--certified-kubernetes-distribution--kubesphere">CNCF CLOUD NATIVE Landscape.
-</a>
-</p>
+If you find this project useful, consider buying me a coffee ☕️.  
+
+### 💰 Crypto Donation  
+
+- **BTC**  
+  ![BTC QR Code](./donation/btc.png)  
+
+- **ETH**  
+  ![ETH QR Code](./donation/eth.png)  
+
+- **SOLANA**  
+  ![SOLANA QR Code](./donation/sol.png)  
+

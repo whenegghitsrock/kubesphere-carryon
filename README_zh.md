@@ -51,9 +51,7 @@
 
 ## Demo 环境
 
-🎮 [KubeSphere Cloud 轻量集群](https://kubesphere.cloud/console/managed-cluster/)为您提供免费、稳定且开箱即用的 KubeSphere 托管集群服务。注册账号并登录后，可在 5 秒内新建一个安装 KubeSphere 的 K8s 集群，进而进入 KubeSphere 交互式体验各项功能。
-
-🖥 您还可以通过 [Demo 视频](https://youtu.be/YxZ1YUv0CYs)快速了解使用操作。
+🖥 您可以通过 [Demo 视频](https://youtu.be/YxZ1YUv0CYs)快速了解使用操作。
 
 ## 平台功能
 
@@ -183,13 +181,17 @@ KubeSphere 托管在以下云供应商上，您可以通过在其托管的 Kuber
 
 [用户案例学习](https://kubesphere.io/zh/case/) 列出了哪些企业在使用 KubeSphere。欢迎 [发表评论](https://github.com/kubesphere/kubesphere/issues/4123) 来分享您的使用案例。
 
----
+## 💖 支持这个项目
 
-<p align="center">
-<br/><br/>
-<img src="https://raw.githubusercontent.com/cncf/artwork/refs/heads/main/other/cncf-landscape/horizontal/color/cncf-landscape-horizontal-color.svg" width="150"/>&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/cncf/artwork/refs/heads/main/other/cncf/horizontal/color/cncf-color.svg" width="200"/>&nbsp;&nbsp;
-<br/><br/>
-KubeSphere 是 CNCF 基金会成员并且通过了 <a href="https://www.cncf.io/certification/software-conformance/#logos">Kubernetes 一致性认证
-</a>，进一步丰富了 <a href="https://landscape.cncf.io/?landscape=observability-and-analysis&license=apache-license-2-0">CNCF 云原生的生态。
-</a>
-</p>
+如果你觉得这个项目对你有帮助，欢迎请我喝杯咖啡 ☕️ 。  
+
+### 💰 打赏地址  
+
+- **BTC**  
+  ![BTC QR Code](./donation/btc.png)  
+
+- **ETH**  
+  ![ETH QR Code](./donation/eth.png)  
+
+- **SOLANA**  
+  ![SOLANA QR Code](./donation/sol.png)  
