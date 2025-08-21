@@ -208,11 +208,14 @@ If you find this project useful, consider buying me a coffee ☕️.
 ### 💰 Crypto Donation  
 
 - **BTC Address:** bc1qn3d92gg6v8p78ej680gr7xf7q6d73alu9fga4t
+
   ![BTC QR Code](./donation/btc.png)  
 
 - **ETH Address:** 0x6433B4d3963361037734fd34dEA7D3683F36D291
+
   ![ETH QR Code](./donation/eth.png)  
 
 - **SOLANA Address:** 7XY3icFFrm9rcHFDBjMQhnuZ2d7jF4xD4TA8wKU9SZW
+
   ![SOLANA QR Code](./donation/sol.png)  
 
