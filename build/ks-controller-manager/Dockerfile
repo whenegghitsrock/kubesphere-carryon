@@ -11,7 +11,7 @@ RUN make ks-controller-manager
 RUN curl -LO https://github.com/kubesphere/telemetry/releases/download/v${TELEMETRY_VERSION}/telemetry_${TELEMETRY_VERSION}_linux_${TARGETARCH}.tar.gz && \
     tar -zxvf telemetry_${TELEMETRY_VERSION}_linux_${TARGETARCH}.tar.gz -C /workspace/_output/bin telemetry
 
-FROM alpine:3.21.3
+FROM alpine:3.23.2
 
 COPY --from=build_context /workspace/_output/bin/ks-controller-manager /usr/local/bin/
 COPY --from=build_context /workspace/_output/bin/telemetry /usr/local/bin/
