@@ -7,7 +7,7 @@ ADD . /workspace/
 
 RUN make ks-apiserver
 
-FROM alpine:3.21.3
+FROM alpine:3.23.3
 
 COPY --from=build_context /workspace/_output/bin/ks-apiserver /usr/local/bin/
 
